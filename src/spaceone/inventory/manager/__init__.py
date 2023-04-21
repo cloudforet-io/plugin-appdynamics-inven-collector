@@ -1,0 +1,1 @@
+from spaceone.inventory.manager.application.application_manager import ApplicationManager

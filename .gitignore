@@ -1,0 +1,15 @@
+*.swp
+*.bak
+disk
+build
+*.egg-info
+*.egg
+*.whl
+.idea
+__pycache__
+reports
+venv
+local-conf.yml
+.venv/
+.venv.nosync/
+.DS_Store
