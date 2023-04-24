@@ -21,7 +21,7 @@ class Tags(Model):
 
 
 class CloudServiceResource(Model):
-    provider = StringType(default="cisco")
+    provider = StringType(default="appdynamics")
     cloud_service_type = StringType()
     cloud_service_group = StringType()
     name = StringType(default='')

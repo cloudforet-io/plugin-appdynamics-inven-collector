@@ -5,7 +5,7 @@ from spaceone.inventory.libs.schema.cloud_service_type import CloudServiceTypeRe
 
 class ErrorResource(Model):
     resource_type = StringType(default='inventory.CloudService')
-    provider = StringType(default='cisco')
+    provider = StringType(default='appdynamics')
     cloud_service_group = StringType(default='')
     cloud_service_type = StringType(default='')
     resource_id = StringType(serialize_when_none=False)

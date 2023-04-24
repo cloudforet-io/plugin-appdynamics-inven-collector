@@ -10,7 +10,8 @@ The credentials contents
 
 ~~~
 ---
-client_id=<client_id>@<application>
+client_name=<client_name>
+account_name=<account_name>
 client_secret=<client_secret>
 controller=<Controller URL>
 ~~~

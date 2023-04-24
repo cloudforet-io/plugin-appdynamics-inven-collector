@@ -25,6 +25,7 @@ application_meta = CloudServiceMeta.set_layouts(
 
 class ApplicationResource(CloudServiceResource):
     cloud_service_type = StringType(default='Application')
+    cloud_service_group = StringType(default='Application')
     data = ModelType(Application)
     _metadata = ModelType(CloudServiceMeta, default=application_meta, serialized_name='metadata')
     name = StringType()

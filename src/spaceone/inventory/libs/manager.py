@@ -72,7 +72,7 @@ class AppdynamicsManager(BaseManager):
 
         # if cloud_svc_object is dictionary type
         for key, value in cloud_svc_dict.items():
-            if 'cisco' in str(type(value)):
+            if 'appdynamics' in str(type(value)):
                 cloud_svc_dict[key] = self.convert_nested_dictionary(value)
             elif isinstance(value, list):
                 value_list = []
