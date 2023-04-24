@@ -31,20 +31,22 @@ class AppdynamicsConnector(BaseConnector):
         # URL: /controller/api/oauth/access_token
         # create access_token
         # secret_data
-        # client_id, client_secret, controller
+        # client_name, account_name, client_secret, controller
         PATH = "/controller/api/oauth/access_token"
         BASE_URL = secret_data.get("controller", None)
         self.base_url = BASE_URL
         if BASE_URL is None:
             # ERROR no controller
+            # TODO: Return ERROR
             pass
-        params = {
-                'client_id': secret_data['client_id'],
-                'client_secret': secret_data['client_secret'],
-                'grant_type': 'client_credentials'
-                }
-        client_id = secret_data['client_id']
-        client_secret = secret_data['client_secret']
+        client_name = secret_data.get("client_name", None)
+        account_name = secret_data.get("account_name", None)
+        client_secret = secret_data.get("client_secret", None)
+        if client_name is None or account_name is None or client_secret is None:
+            # secret_data is not complete
+            # TODO: Return ERROR
+            pass
+        client_id = f'{client_name}@{account_name}'
         params = f'grant_type=client_credentials&client_id={client_id}&client_secret={client_secret}'
         full_url = urljoin(BASE_URL , PATH)
         response = requests.post(full_url, data=params)
