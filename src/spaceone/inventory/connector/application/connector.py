@@ -25,3 +25,13 @@ class ApplicationConnector(AppdynamicsConnector):
         # GET /controller/rest/applications
         PATH = "/controller/rest/applications"
         return self.make_request(PATH)
+
+    def list_tiers(self, app_id):
+        # GET /controller/rest/applications/<app_id>/tiers
+        PATH = f"/controller/rest/applications/{app_id}/tiers"
+        return self.make_request(PATH)
+
+    def list_backends(self, app_id):
+        # GET /controller/rest/applications/<app_id>/backends
+        PATH = f"/controller/rest/applications/{app_id}/backends"
+        return self.make_request(PATH)

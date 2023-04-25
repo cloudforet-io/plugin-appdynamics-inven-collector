@@ -42,6 +42,12 @@ class ApplicationManager(AppdynamicsManager):
 
             try:
                 application_dict = self.convert_nested_dictionary(application)
+                app_id = application['id']  # id is primary key
+                # Tiers
+                application_dict['tiers'] = application_conn.list_tiers(app_id)
+
+                # Backends
+                application_dict["backends"] = application_conn.list_backends(app_id)
 
                 application_data = Application(application_dict, strict=False)
                 application_resource = ApplicationResource({

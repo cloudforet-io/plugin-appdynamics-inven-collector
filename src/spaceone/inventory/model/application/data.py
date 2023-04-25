@@ -2,15 +2,32 @@ from schematics import Model
 from schematics.types import ModelType, ListType, StringType, IntType, BooleanType, DateTimeType, FloatType
 #from spaceone.inventory.libs.schema.resource import AppdynamicsCloudService
 
+class Tier(Model):
+    name = StringType(default='-', serialize_when_none=False)
+    id = StringType(serialize_when_none=False)
+    description = StringType(serialize_when_none=False)
+    number_of_nodes = IntType(deserialize_from='numberOfNodes', serialize_when_none=False)
+    type = StringType(serialize_when_none=False)
+    agent_type = StringType(deserialize_from='agentType', serialize_when_none=False)
+
+
+class Backend(Model):
+    name = StringType(default='-', serialize_when_none=False)
+    id = StringType(serialize_when_none=False)
+    exit_point_type = StringType(deserialize_from='exitPointType', serialize_when_none=False)
+
 
 class Application(Model):  # Main Class
     name = StringType(default='-', serialize_when_none=False)
     id = StringType(serialize_when_none=False)
     description = StringType(serialize_when_none=False)
-    accountGuid = StringType(serialize_when_none=False)
+    account_guid = StringType(deserialize_from='accountGuid', serialize_when_none=False)
+
+    tiers = ListType(ModelType(Tier), serialize_when_none=False)
+    backends = ListType(ModelType(Backend), serialize_when_none=False)
 
     def reference(self):
         return {
             "resource_id": self.id,
-            "external_link": f"https://portal.azure.com/#@.onmicrosoft.com/resource{self.id}/overview",
+            "external_link": f"https://accounts.appdynamics.com/overview",
         }
