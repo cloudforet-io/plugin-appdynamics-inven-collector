@@ -25,7 +25,6 @@ cst_aplication.tags = {
 
 cst_aplication._metadata = CloudServiceTypeMeta.set_meta(
     fields=[
-        TextDyField.data_source('Name', 'data.name'),
         TextDyField.data_source('Id', 'data.id'),
         TextDyField.data_source('Description', 'data.description'),
         TextDyField.data_source('AccountGuid', 'data.account_guid'),
