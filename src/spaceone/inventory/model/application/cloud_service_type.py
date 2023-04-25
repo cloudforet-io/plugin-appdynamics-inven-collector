@@ -14,7 +14,7 @@ ag_total_count_conf = os.path.join(current_dir, 'widget/application_total_count.
 
 cst_aplication = CloudServiceTypeResource()
 cst_aplication.name = 'Application'
-cst_aplication.group = 'Application'
+cst_aplication.group = 'Applications'
 cst_aplication.service_code = 'Cisco.Appdynamics/application'
 cst_aplication.labels = ['Application']
 cst_aplication.is_major = True
