@@ -14,7 +14,7 @@ class Tier(Model):
 class Backend(Model):
     name = StringType(default='-', serialize_when_none=False)
     id = StringType(serialize_when_none=False)
-    exit_point_type = StringType(deserialize_from='exitpointtype', serialize_when_none=False)
+    exit_point_type = StringType(deserialize_from='exitPointType', serialize_when_none=False)
 
 class BusinessTransaction(Model):
     name = StringType(default='-', serialize_when_none=False)
