@@ -23,8 +23,7 @@ class BusinessTransaction(Model):
     internal_name = StringType(deserialize_from='internalName', serialize_when_none=False)
     tier_id = StringType(deserialize_from='tierId', serialize_when_none=False)
     tier_name = StringType(deserialize_from='tierName', serialize_when_none=False)
-    # TODO: change BooleanType
-    background = StringType(deserialize_from='background', serialize_when_none=False)
+    background = BooleanType()
 
 
 class Application(Model):  # Main Class

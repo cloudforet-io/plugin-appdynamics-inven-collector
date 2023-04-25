@@ -43,6 +43,9 @@ class ApplicationManager(AppdynamicsManager):
             try:
                 application_dict = self.convert_nested_dictionary(application)
                 app_id = application['id']  # id is primary key
+                # Biz-transactions
+                application_dict['business_transactions'] = application_conn.list_business_transactions(app_id)
+
                 # Tiers
                 application_dict['tiers'] = application_conn.list_tiers(app_id)
 
