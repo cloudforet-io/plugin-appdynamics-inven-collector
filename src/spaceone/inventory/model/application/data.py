@@ -14,7 +14,17 @@ class Tier(Model):
 class Backend(Model):
     name = StringType(default='-', serialize_when_none=False)
     id = StringType(serialize_when_none=False)
-    exit_point_type = StringType(deserialize_from='exitPointType', serialize_when_none=False)
+    exit_point_type = StringType(deserialize_from='exitpointtype', serialize_when_none=False)
+
+class BusinessTransaction(Model):
+    name = StringType(default='-', serialize_when_none=False)
+    id = StringType(serialize_when_none=False)
+    entry_point_type = StringType(deserialize_from='entryPointType', serialize_when_none=False)
+    internal_name = StringType(deserialize_from='internalName', serialize_when_none=False)
+    tier_id = StringType(deserialize_from='tierId', serialize_when_none=False)
+    tier_name = StringType(deserialize_from='tierName', serialize_when_none=False)
+    # TODO: change BooleanType
+    background = StringType(deserialize_from='background', serialize_when_none=False)
 
 
 class Application(Model):  # Main Class
@@ -25,6 +35,7 @@ class Application(Model):  # Main Class
 
     tiers = ListType(ModelType(Tier), serialize_when_none=False)
     backends = ListType(ModelType(Backend), serialize_when_none=False)
+    business_transactions = ListType(ModelType(BusinessTransaction), serialize_when_none=False)
 
     def reference(self):
         return {

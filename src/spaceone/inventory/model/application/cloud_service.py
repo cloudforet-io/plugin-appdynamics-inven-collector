@@ -20,6 +20,17 @@ application_info_meta = ItemDynamicLayout.set_fields('Application', fields=[
     TextDyField.data_source('Account GUID', 'data.account_guid'),
 ])
 
+# TAB = Biz-transactions
+biz_tnxs_table_meta = SimpleTableDynamicLayout.set_fields('Business Transactions',
+                                                        root_path='data.business_transactions',
+                                                        fields=[
+                                                            TextDyField.data_source('Name', 'name'),
+                                                            TextDyField.data_source('Entry Point Type', 'entry_point_type'),
+                                                            TextDyField.data_source('Tier Name', 'tier_name'),
+                                                            TextDyField.data_source('Background', 'background')
+                                                        ])
+
+
 # TAB - Tiers
 tiers_table_meta = SimpleTableDynamicLayout.set_fields('Tiers',
                                                         root_path='data.tiers',
@@ -38,7 +49,7 @@ backends_table_meta = SimpleTableDynamicLayout.set_fields('Backends',
                                                         ])
 
 application_meta = CloudServiceMeta.set_layouts(
-    [application_info_meta, tiers_table_meta, backends_table_meta])
+    [application_info_meta, biz_tnxs_table_meta, tiers_table_meta, backends_table_meta])
 
 class ApplicationResource(CloudServiceResource):
     cloud_service_group = StringType(default='Applications')
