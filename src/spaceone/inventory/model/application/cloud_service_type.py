@@ -20,7 +20,7 @@ cst_aplication.labels = ['Application']
 cst_aplication.is_major = True
 cst_aplication.is_primary = True
 cst_aplication.tags = {
-    'spaceone:icon': f'{ASSET_URL}/azure-application-gateways.svg',
+    'spaceone:icon': f'{ASSET_URL}/application.svg',
 }
 
 cst_aplication._metadata = CloudServiceTypeMeta.set_meta(
