@@ -1,0 +1,15 @@
+---
+cloud_service_group: Databases
+cloud_service_type: Database
+name: Count By DB Type
+query:
+  aggregate:
+    - group:
+        keys:
+          - name: name
+            key: data.type
+        fields:
+          - name: value
+            operator: count
+options:
+  chart_type: TREEMAP
