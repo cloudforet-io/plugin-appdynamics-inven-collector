@@ -37,6 +37,7 @@ class ApplicationManager(AppdynamicsManager):
         applications_responses = []
         error_responses = []
 
+        controller_url = self._get_controller_url(params['secret_data'])
         applications_list = application_conn.list_all_applications()
         for application in applications_list:
 
@@ -55,7 +56,7 @@ class ApplicationManager(AppdynamicsManager):
                 application_data = Application(application_dict, strict=False)
                 application_resource = ApplicationResource({
                     'data': application_data,
-                    'reference': ReferenceModel(application_data.reference()),
+                    'reference': self._create_reference(controller_url, app_id),
                     'name': application_data.name,
                 })
                 # _LOGGER.debug(f'[APPLICATION GATEWAYS INFO] {application_resource.to_primitive()}')
@@ -71,4 +72,24 @@ class ApplicationManager(AppdynamicsManager):
         _LOGGER.debug(f'** Application Finished {time.time() - start_time} Seconds **')
         return applications_responses, error_responses
 
+    def _create_reference(self, controller_url, id):
+        """ Create reference data for update_resource
+      
+        URI: controller_url/controller/rest/applications/{id}
 
+        URL format exmaple:
+            controller_url/controller/#/location=APP_DASHBOARD&timeRange=last_1_hour.BEFORE_NOW.-1.-1.60&application=439&dashboardMode=force
+        Args:
+            controller_url (str): controller url
+            id (str): application ID
+        """
+        result = {
+                "resource_id": f"{controller_url}/controller/rest/applications/{id}",
+                "external_link": f"{controller_url}/controller/#/location=APP_DASHBOARD&timeRange=last_1_hour.BEFORE_NOW.-1.-1.60&application={id}&dashboardMode=force"
+            }
+        return result
+
+    def _get_controller_url(self, secret_data):
+        """ Get controller url from secret data
+        """
+        return secret_data.get("controller", "CONTROLLER_URL")

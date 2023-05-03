@@ -1,1 +1,2 @@
 from spaceone.inventory.manager.application.application_manager import ApplicationManager
+from spaceone.inventory.manager.database.database_manager import DatabaseManager

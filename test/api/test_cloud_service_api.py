@@ -33,8 +33,8 @@ class TestCollector(TestCase):
 
     def test_collect(self):
         options = {
-            'cloud_service_types': ['Application'],
-            # 'custom_asset_url': 'https://xxxxx.cloudforet.dev.icon/azure'
+            'cloud_service_types': ['Application','Database'],
+            #'cloud_service_types': ['Database'],
         }
         # options = {}
         filter = {}

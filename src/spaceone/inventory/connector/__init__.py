@@ -1,1 +1,2 @@
 from spaceone.inventory.connector.application import ApplicationConnector
+from spaceone.inventory.connector.database import DatabaseConnector

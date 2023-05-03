@@ -8,4 +8,5 @@ ASSET_URL = 'https://spaceone-custom-assets.s3.ap-northeast-2.amazonaws.com/cons
 
 CLOUD_SERVICE_GROUP_MAP = {
     'Application': 'ApplicationManager',
+    'Database': 'DatabaseManager',
 }
