@@ -38,6 +38,7 @@ class ApplicationManager(AppdynamicsManager):
         error_responses = []
 
         controller_url = self._get_controller_url(params['secret_data'])
+        account_name = self._get_account_name(params['secret_data'])
         applications_list = application_conn.list_all_applications()
         for application in applications_list:
 
@@ -58,6 +59,7 @@ class ApplicationManager(AppdynamicsManager):
                     'data': application_data,
                     'reference': self._create_reference(controller_url, app_id),
                     'name': application_data.name,
+                    'account': account_name,
                 })
                 # _LOGGER.debug(f'[APPLICATION GATEWAYS INFO] {application_resource.to_primitive()}')
 
@@ -93,3 +95,8 @@ class ApplicationManager(AppdynamicsManager):
         """ Get controller url from secret data
         """
         return secret_data.get("controller", "CONTROLLER_URL")
+
+    def _get_account_name(self, secret_data):
+        """ Get account name from secret data
+        """
+        return secret_data.get("account_name", "ACCOUNT_NAME")

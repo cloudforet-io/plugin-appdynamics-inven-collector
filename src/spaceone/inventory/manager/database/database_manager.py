@@ -37,6 +37,7 @@ class DatabaseManager(AppdynamicsManager):
         databases_responses = []
         error_responses = []
 
+        account_name = self._get_account_name(params['secret_data'])
         controller_url = self._get_controller_url(params['secret_data'])
         databases_list = database_conn.list_all_servers()
         for database in databases_list:
@@ -57,6 +58,7 @@ class DatabaseManager(AppdynamicsManager):
                     'data': database_data,
                     'reference': self._create_reference(controller_url, db_id),
                     'name': database_data.name,
+                    'account': account_name
                 })
 
                 databases_responses.append(DatabaseResponse({'resource': database_resource}))
@@ -92,3 +94,8 @@ class DatabaseManager(AppdynamicsManager):
         """ Get controller url from secret data
         """
         return secret_data.get("controller", "CONTROLLER_URL")
+
+    def _get_account_name(self, secret_data):
+        """ Get account name from secret data
+        """
+        return secret_data.get("account_name", "ACCOUNT_NAME")

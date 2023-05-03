@@ -1,6 +1,6 @@
 ---
-cloud_service_group: Application
-cloud_service_type: Application
+cloud_service_group: Databases
+cloud_service_type: Database
 name: Count By Account
 query:
   aggregate:
