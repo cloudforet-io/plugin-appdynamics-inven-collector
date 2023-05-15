@@ -26,7 +26,7 @@ class BusinessTransaction(Model):
     background = BooleanType()
 
 class Metric(Model):
-    metric_path = StringType(deserialize_from='metricPath', serialize_when_none=False)
+    metric_path = StringType(deserialize_from='metric_list', serialize_when_none=False)
 
 class Monitoring(Model):
     metric = ModelType(Metric, serialize_when_none=False)
