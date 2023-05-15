@@ -25,6 +25,11 @@ class BusinessTransaction(Model):
     tier_name = StringType(deserialize_from='tierName', serialize_when_none=False)
     background = BooleanType()
 
+class Metric(Model):
+    metric_path = StringType(deserialize_from='metricPath', serialize_when_none=False)
+
+class Monitoring(Model):
+    metric = ModelType(Metric, serialize_when_none=False)
 
 class Application(Model):  # Main Class
     name = StringType(default='-', serialize_when_none=False)
@@ -36,6 +41,7 @@ class Application(Model):  # Main Class
     backends = ListType(ModelType(Backend), serialize_when_none=False)
     business_transactions = ListType(ModelType(BusinessTransaction), serialize_when_none=False)
 
+    appdynamics_monitoring = ModelType(Monitoring, serialize_when_none=False)
 #    def reference(self):
 #        return {
 #            "resource_id": self.id,

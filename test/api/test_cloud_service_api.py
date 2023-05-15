@@ -34,7 +34,7 @@ class TestCollector(TestCase):
     def test_collect(self):
         options = {
             'cloud_service_types': ['Application','Database'],
-            #'cloud_service_types': ['Database'],
+            'cloud_service_types': ['Application'],
         }
         # options = {}
         filter = {}

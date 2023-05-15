@@ -54,6 +54,9 @@ class ApplicationManager(AppdynamicsManager):
                 # Backends
                 application_dict["backends"] = application_conn.list_backends(app_id)
 
+                # Monitoring
+                application_dict["appdynamics_monitoring"] = self._create_appdynamics_monitoring(app_id)
+
                 application_data = Application(application_dict, strict=False)
                 application_resource = ApplicationResource({
                     'data': application_data,
@@ -100,3 +103,11 @@ class ApplicationManager(AppdynamicsManager):
         """ Get account name from secret data
         """
         return secret_data.get("account_name", "ACCOUNT_NAME")
+
+    def _create_appdynamics_monitoring(self, app_id):
+        # add metric reference
+        metric = {"metric_path": f"/controller/rest/applications/{app_id}/metric-data"}
+
+        return {
+            "metric": metric
+        }
