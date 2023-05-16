@@ -106,7 +106,11 @@ class ApplicationManager(AppdynamicsManager):
 
     def _create_appdynamics_monitoring(self, app_id):
         # add metric reference
-        metric = {"metric_list": f"/controller/rest/applications/{app_id}/metrics?metric-path=Overall%20Application%20Performance"}
+        metric = {
+            "path": f"/controller/rest/applications/{app_id}/metrics",
+            "data": f"/controller/rest/applications/{app_id}/metric-data",
+            "params": {"metric-path": "Overall Application Performance"}
+        }
 
         return {
             "metric": metric

@@ -25,8 +25,13 @@ class BusinessTransaction(Model):
     tier_name = StringType(deserialize_from='tierName', serialize_when_none=False)
     background = BooleanType()
 
+class Params(Model):
+    metric_path = StringType(deserialize_from='metric-path', serialized_name='metric-path', serialize_when_none=False)
+
 class Metric(Model):
-    metric_list = StringType(deserialize_from='metric_list', serialize_when_none=False)
+    path = StringType(deserialize_from='path', serialize_when_none=False)
+    data = StringType(deserialize_from='data', serialize_when_none=False)
+    params = ModelType(Params, serialize_when_none=False)
 
 class Monitoring(Model):
     metric = ModelType(Metric, serialize_when_none=False)
