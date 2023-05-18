@@ -106,8 +106,8 @@ class DatabaseManager(AppdynamicsManager):
     def _create_appdynamics_monitoring(self, db_name):
         # add metric reference
         metric = {
-            "path": "/controller/rest/applications/Databases Monitoring/metrics",
-            "data": "/controller/rest/applications/Databases Monitoring/metric-data",
+            "path": "/controller/rest/applications/Database%20Monitoring/metrics",
+            "data": "/controller/rest/applications/Database%20Monitoring/metric-data",
             "params": {"metric-path": f"Databases|{db_name}|KPI"}
         }
 
