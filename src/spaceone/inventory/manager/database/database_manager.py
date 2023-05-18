@@ -53,6 +53,9 @@ class DatabaseManager(AppdynamicsManager):
                 database_dict["backends"] = database_conn.list_backends(db_id)
                 """
 
+                # Monitoring
+                database_dict["appdynamics_monitoring"] = self._create_appdynamics_monitoring(database.get('name', 'No Name'))
+
                 database_data = Database(database_dict, strict=False)
                 database_resource = DatabaseResource({
                     'data': database_data,
@@ -99,3 +102,15 @@ class DatabaseManager(AppdynamicsManager):
         """ Get account name from secret data
         """
         return secret_data.get("account_name", "ACCOUNT_NAME")
+
+    def _create_appdynamics_monitoring(self, db_name):
+        # add metric reference
+        metric = {
+            "path": "/controller/rest/applications/Databases Monitoring/metrics",
+            "data": "/controller/rest/applications/Databases Monitoring/metric-data",
+            "params": {"metric-path": f"Databases|{db_name}|KPI"}
+        }
+
+        return {
+            "metric": metric
+        }
